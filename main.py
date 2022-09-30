@@ -29,9 +29,8 @@ def arguments_handler() -> argparse.ArgumentParser:
     return parser
 
 
-def perform_actions(args):
+def perform_actions(args: argparse.Namespace) -> None:
     """ Renaming, converting or backing up """
-
     if args.rename:
         rename_wallpapers(args.path)
 
@@ -46,7 +45,7 @@ def perform_actions(args):
         make_backup(args.path, where_to_store=args.backup)
 
 
-def main():
+def main() -> None:
     args = arguments_handler().parse_args()
 
     if args.dispatch:
