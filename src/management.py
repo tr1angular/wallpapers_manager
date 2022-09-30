@@ -46,8 +46,6 @@ def get_new_wallpapers_names(wallpapers: List[str]) -> Dict[str, str]:
                 rename_actions[wallpaper] = str(must_be) + os.path.splitext(wallpaper)[1]
         except ValueError:
             rename_actions[wallpaper] = str(must_be) + os.path.splitext(wallpaper)[1]
-        finally:
-            must_be += 1
 
     return rename_actions
 
