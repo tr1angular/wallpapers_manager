@@ -2,7 +2,7 @@
 name = "wallpapers-manager"
 version = "0.1.0"
 description = "Simple tool for renaming and converting wallpapers numerically"
-authors = ["tr1angular"]
+authors = ["tr1angular", "<toro_75@yahoo.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "wallpapers_manager"}]

@@ -2,19 +2,9 @@ import argparse
 from functools import partial
 from time import sleep
 
-from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-from src.management import rename_wallpapers, convert_wallpapers, make_backup
-
-
-class WallpapersHandler(FileSystemEventHandler):
-    def __init__(self, perform: partial):
-        super().__init__()
-        self.perform = perform
-
-    def on_any_event(self, event):
-        self.perform()
+from wallpapers_manager import *
 
 
 def arguments_handler() -> argparse.ArgumentParser:

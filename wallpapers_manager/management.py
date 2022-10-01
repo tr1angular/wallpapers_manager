@@ -15,7 +15,7 @@ logger.add(sys.stdout, colorize=True, format="<green>{message}</green>", level="
 logger.add(sys.stderr, colorize=True, format="<red>{message}</red>", level="ERROR")
 
 
-def get_list_of_wallpapers(path: str) -> List[str]:
+def _get_list_of_wallpapers(path: str) -> List[str]:
     """ Return a list of images from path with extensions such as png or jpg"""
     wallpapers = []
     try:
@@ -34,7 +34,7 @@ def get_list_of_wallpapers(path: str) -> List[str]:
     return wallpapers
 
 
-def get_new_wallpapers_names(wallpapers: List[str]) -> Dict[str, str]:
+def _get_new_wallpapers_names(wallpapers: List[str]) -> Dict[str, str]:
     """ Define a new names for wallpapers """
     sorted_wallpapers = natsorted(wallpapers)
     rename_actions = {}
@@ -52,8 +52,8 @@ def get_new_wallpapers_names(wallpapers: List[str]) -> Dict[str, str]:
 
 def rename_wallpapers(path: str) -> None:
     """ Renames images in a directory numerically """
-    wallpapers = get_list_of_wallpapers(path)
-    wallpapers_to_rename = get_new_wallpapers_names(wallpapers)
+    wallpapers = _get_list_of_wallpapers(path)
+    wallpapers_to_rename = _get_new_wallpapers_names(wallpapers)
 
     for old_name, new_name in wallpapers_to_rename.items():
         try:
@@ -67,7 +67,7 @@ def rename_wallpapers(path: str) -> None:
 
 def convert_wallpapers(path: str, to: str = "png") -> None:
     """ Convert all wallpapers in a directory to one type """
-    wallpapers = get_list_of_wallpapers(path)
+    wallpapers = _get_list_of_wallpapers(path)
     wallpapers_to_convert = [x for x in wallpapers if not x.endswith(to) and os.path.isfile(os.path.join(path, x))]
 
     for wallpaper in wallpapers_to_convert:
@@ -85,7 +85,7 @@ def convert_wallpapers(path: str, to: str = "png") -> None:
 
 def make_backup(path: str, where_to_store: str = "") -> None:
     """ Create a zip archive with all wallpapers in it. """
-    wallpapers = get_list_of_wallpapers(path)
+    wallpapers = _get_list_of_wallpapers(path)
 
     if where_to_store:
         archive_name = os.path.join(where_to_store, os.path.basename(path) + ".zip")
