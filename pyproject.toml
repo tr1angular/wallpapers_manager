@@ -7,6 +7,9 @@ license = "MIT"
 readme = "README.md"
 packages = [{include = "wallpapers_manager"}]
 
+[tool.poetry.scripts]
+wallp = "wallp:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 loguru = "^0.6.0"
