@@ -7,7 +7,6 @@ from zipfile import ZipFile
 from PIL import Image
 from loguru import logger
 from natsort import natsorted, natsort_keygen
-from pprint import pprint
 
 
 EXTENSIONS = ("png", "jpg", "jpeg")
