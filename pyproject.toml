@@ -11,7 +11,7 @@ packages = [{include = "wallpapers_manager"}]
 wallp = "wallp:main"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 loguru = "^0.6.0"
 natsort = "^8.2.0"
 image = "^1.5.33"

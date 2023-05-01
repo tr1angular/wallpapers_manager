@@ -1,11 +1,13 @@
 import os
 import sys
+import re
 from typing import List, Dict
 from zipfile import ZipFile
 
 from PIL import Image
 from loguru import logger
-from natsort import natsorted
+from natsort import natsorted, natsort_keygen
+from pprint import pprint
 
 
 EXTENSIONS = ("png", "jpg", "jpeg")
@@ -37,6 +39,11 @@ def _get_list_of_wallpapers(path: str) -> List[str]:
 def _get_new_wallpapers_names(wallpapers: List[str]) -> Dict[str, str]:
     """ Define a new names for wallpapers """
     sorted_wallpapers = natsorted(wallpapers)
+    fake_sorted = [item for item in sorted_wallpapers if re.findall(r'^\d+\D+.+\.', item)]
+
+    for fake in fake_sorted:
+        sorted_wallpapers.append(sorted_wallpapers.pop(sorted_wallpapers.index(fake)))
+
     rename_actions = {}
 
     for must_be, wallpaper in enumerate(sorted_wallpapers, 1):
